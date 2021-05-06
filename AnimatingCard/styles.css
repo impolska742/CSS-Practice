@@ -1,0 +1,115 @@
+/* #34bf69 */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  line-height: 1.6;
+  background-color: #13161b;
+  font-family: sans-serif;
+  /* padding-right: 10rem; */
+}
+
+.card {
+  color: white;
+  background-image: url(./background.jpg);
+  background-size: cover;
+  padding: 10rem 0 0 0;
+  max-width: 35ch;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  transition: all 0.2s ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: scale(1.06);
+}
+
+.card__content {
+  --padding: 1.5rem;
+  padding: var(--padding);
+  background: linear-gradient(
+    hsl(0 0% 0% / 0),
+    hsl(20 0% 0% / 0.3) 20%,
+    hsl(0 0% 0% / 1)
+  );
+
+  transform: translateY(65%);
+  transition: 0.5s ease transform;
+}
+
+.card:hover .card__content,
+.card:focus-within .card__content {
+  transform: translateY(0%);
+  transition-delay: 500ms;
+}
+
+.card:focus-within .card__content {
+  transition-duration: 0ms;
+}
+
+.card__content > *:not(.card__title) {
+  opacity: 0;
+  transition: opacity 500ms linear;
+  transition-delay: 500ms;
+}
+
+.card:hover .card__content > *:not(.card__title),
+.card:focus-within .card__content > *:not(.card__title) {
+  opacity: 1;
+  transition-delay: 800ms;
+}
+
+.card:focus-within .card__content > *:not(.card__title) {
+  transition-delay: 500ms;
+}
+.card__title {
+  position: relative;
+  /* outline: 1px solid red; */
+  width: max-content;
+}
+
+.card__title::after {
+  content: " ";
+  left: calc(var(--padding) * -1);
+  bottom: -5px;
+  position: absolute;
+  height: 5px;
+  background-color: white;
+  /* background: rgba(100, 39, 4, 0.959); */
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: 0.5s ease all;
+  /* transition: 0.5s ease background-color; */
+}
+
+.card:hover .card__title::after,
+.card:focus-within .card__title::after {
+  transform: scaleX(1);
+  background-color: rgba(100, 39, 4, 0.959);
+}
+
+.card__button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  background-color: rgba(247, 207, 207, 0.377);
+  padding: 0.5rem 1.5rem;
+  border-radius: 7px;
+  color: white;
+}
+
+.card__button:hover,
+.card__button:focus {
+  background-color: white;
+  color: black;
+}
